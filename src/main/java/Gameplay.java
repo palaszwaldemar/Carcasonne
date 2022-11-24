@@ -2,10 +2,10 @@ import java.awt.*;
 
 public class Gameplay {
     public void tick() {
-        System.out.println("update");
     }
 
     public void render(Graphics g) {
-        System.out.println("render");
+        Tile tile = new Tile(8, 4);
+        tile.render(g);
     }
 }

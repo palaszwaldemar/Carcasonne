@@ -7,8 +7,8 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 //manages game frame and canvas
 public final class Display {
 
-    private static final int DEFAULT_WIDTH = 600;
-    private static final int DEFAULT_HEIGHT =600;
+    private static final int DEFAULT_WIDTH = 2000;
+    private static final int DEFAULT_HEIGHT =900;
 
     private static int width;
     private static int height;

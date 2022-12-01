@@ -8,11 +8,7 @@ public class Gameplay implements MouseListener {
     private List<Tile> tiles = new ArrayList<>();
 
     public Gameplay() {
-        tiles.add(new Tile(4, 7));
-        tiles.add(new Tile(8, 1));
-        tiles.add(new Tile(2, 5));
-        tiles.add(new Tile(7, 6));
-        tiles.add(new Tile(3, 1));
+        tiles.add(new Tile(8, 4));
 
     }
 
@@ -26,7 +22,8 @@ public class Gameplay implements MouseListener {
     }
 
     void spawnTile(int x, int y) {
-        System.out.printf("Stworzenie tile w pozycji: x:%d y:%d\n", x, y);
+        Tile tile = new Tile(x, y);
+        tiles.add(tile);
     }
 
     @Override
@@ -55,6 +52,6 @@ public class Gameplay implements MouseListener {
     }
 }
 
-//drukuje sie pozycja x, y która została kliknieta
+//drukuje sie pozycja x, y która została kliknieta +
 //wstawia sie tile w pozycje x, y
 //można wstawiac tylko w te miescja przylegajace

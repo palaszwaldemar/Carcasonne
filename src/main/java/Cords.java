@@ -1,18 +1,18 @@
 public class Cords {
 
-    static int xPixelsToCords(int x) {
+    static int xToCords(int x) {
         return x / 100;
     }
 
-    static int yPixelsToCords(int y) {
+    static int yToCords(int y) {
         return y / 100;
     }
 
-    static int xCordsToPixels(int x) {
+    static int xToPixels(int x) {
         return x * 100;
     }
 
-    static int yCordsToPixels(int y) {
+    static int yToPixels(int y) {
         return y * 100;
     }
 }

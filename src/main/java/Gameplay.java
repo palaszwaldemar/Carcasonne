@@ -16,7 +16,7 @@ public class Gameplay implements MouseListener {
     }
 
     public void render(Graphics g) {
-        for (Tile tile : tiles) {
+        for (Tile tile : new ArrayList<>(tiles)) {
             tile.render(g);
         }
     }
@@ -32,7 +32,7 @@ public class Gameplay implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {spawnTile(Cords.xPixelsToCords(e.getX()), Cords.yPixelsToCords(e.getY()));
+    public void mousePressed(MouseEvent e) {spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
 
     }
 

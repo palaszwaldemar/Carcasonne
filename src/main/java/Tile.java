@@ -10,6 +10,6 @@ public class Tile {
     }
 
     void render(Graphics g) {
-        g.drawRect(x * 100, y * 100, 100, 100);
+        g.drawRect(Cords.xCordsToPixels(x), Cords.yCordsToPixels(y), 100, 100);
     }
 }

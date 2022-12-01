@@ -1,8 +1,10 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gameplay {
+public class Gameplay implements MouseListener {
     private List<Tile> tiles = new ArrayList<>();
 
     public Gameplay() {
@@ -22,4 +24,37 @@ public class Gameplay {
             tile.render(g);
         }
     }
+
+    void spawnTile(int x, int y) {
+        System.out.printf("Stworzenie tile w pozycji: x:%d y:%d\n", x, y);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {spawnTile(Cords.xPixelsToCords(e.getX()), Cords.yPixelsToCords(e.getY()));
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
+
+//drukuje sie pozycja x, y która została kliknieta
+//wstawia sie tile w pozycje x, y
+//można wstawiac tylko w te miescja przylegajace

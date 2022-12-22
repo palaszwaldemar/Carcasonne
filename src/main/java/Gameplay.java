@@ -20,24 +20,32 @@ public class Gameplay implements MouseListener {
         }
     }
 
-    private void spawnTile(int x, int y) { // CHECK : 09.12.2022 zmieniono metodę aby działała poprawnie.
-        System.out.println(tiles.size());
-        if (spawnIsPossible(x, y)) {
+    private void spawnTile(int x, int y) {
+        if (spawnIsPossible(x, y) && placeIsEmpty(x, y)) {
             Tile newTile = new Tile(x, y);
             tiles.add(newTile);
         }
     }
 
-    private boolean spawnIsPossible(int x, int y) {// CHECK : 09.12.2022 dodana metoda pomocnicza
+    private boolean spawnIsPossible(int x, int y) {
         for (Tile tile : tiles) {
-            int otherXDifference = Math.abs( tile.getX() - x);  // 0
-            int otherYDifference = Math.abs( tile.getY() - y);  // 1
+            int otherXDifference = Math.abs( tile.getX() - x);
+            int otherYDifference = Math.abs( tile.getY() - y);
             int sum = otherXDifference + otherYDifference;
             if (sum == 1) {
                 return true;
             }
         }
         return false;
+    }
+
+    private boolean placeIsEmpty(int x, int y) {
+        for (Tile tile : tiles) {
+            if (tile.getX() == x && tile.getY() == y) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

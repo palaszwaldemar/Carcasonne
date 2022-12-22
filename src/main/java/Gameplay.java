@@ -9,7 +9,6 @@ public class Gameplay implements MouseListener {
 
     public Gameplay() {
         tiles.add(new Tile(8, 4));
-
     }
 
     public void tick() {
@@ -22,26 +21,25 @@ public class Gameplay implements MouseListener {
     }
 
     private void spawnTile(int x, int y) { // CHECK : 09.12.2022 zmieniono metodę aby działała poprawnie.
+        System.out.println(tiles.size());
         if (spawnIsPossible(x, y)) {
             Tile newTile = new Tile(x, y);
             tiles.add(newTile);
         }
     }
 
-   private boolean spawnIsPossible(int x, int y) {// CHECK : 09.12.2022 dodana metoda pomocnicza
+    private boolean spawnIsPossible(int x, int y) {// CHECK : 09.12.2022 dodana metoda pomocnicza
         for (Tile tile : tiles) {
-            if (x == tile.getX() && y == tile.getY()) {
-                return false;
-            }
-            if (x == tile.getX() && (y == tile.getY() + 1 || y == tile.getY() - 1)) {//  UP/DOWN
-                return true;
-            }
-            if (y == tile.getY() && (x == tile.getX() + 1 || x == tile.getX() - 1)) {//  LEFT/RIGHT
+            int otherXDifference = Math.abs( tile.getX() - x);  // 0
+            int otherYDifference = Math.abs( tile.getY() - y);  // 1
+            int sum = otherXDifference + otherYDifference;
+            if (sum == 1) {
                 return true;
             }
         }
         return false;
     }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -50,7 +48,7 @@ public class Gameplay implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY())); // CHECK : 09.12.2022 gdzie ta metoda się odpala?
+        spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
     }
 
     @Override
@@ -69,6 +67,6 @@ public class Gameplay implements MouseListener {
     }
 }
 
-//drukuje sie pozycja x, y która została kliknieta +
-//wstawia sie tile w pozycje x, y
-//można wstawiac tylko w te miescja przylegajace
+//kładziemy tylko na WOLNE przylegajace miejsca
+//grafiki tile
+//przyleganie dróg - zezwala lub nie na położenie tile

@@ -1,21 +1,31 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 public class Tile {
-    private final int x;
-    private final int y;
+    private static final int SIZE = 100;
+    private  int x;
+    private  int y;
     private BufferedImage bufferedImage;
 
-    public Tile(int x, int y) {
+    public Tile(int x, int y, BufferedImage bufferedImage) {
         this.x = x;
         this.y = y;
-        try {
-            bufferedImage = ImageIO.read(Tile.class.getResource("/tiles/PNG/Base_Game_C2_Tile_D.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.bufferedImage = bufferedImage;
+    }
+
+    void render(Graphics g) {
+        g.drawImage(bufferedImage, Cords.xToPixels(x), Cords.yToPixels(y), SIZE, SIZE, null);
+    }
+
+    void render(Graphics g, int pixelX, int pixelY) {
+        g.drawImage(bufferedImage, pixelX, pixelY, SIZE, SIZE, null);
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getX() {
@@ -24,9 +34,5 @@ public class Tile {
 
     public int getY() {
         return y;
-    }
-
-    void render(Graphics g) {
-        g.drawImage(bufferedImage, Cords.xToPixels(x), Cords.yToPixels(y), 100, 100, null);
     }
 }

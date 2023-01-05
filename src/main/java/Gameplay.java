@@ -6,9 +6,13 @@ import java.util.List;
 
 public class Gameplay implements MouseListener {
     private final List<Tile> tiles = new ArrayList<>();
+    private final TileFactory tileFactory = new TileFactory();
+    private TilePreview tilePreview = new TilePreview();
+
 
     public Gameplay() {
-        tiles.add(new Tile(8, 4));
+        tiles.add(tileFactory.getNextTile(8,4));
+        tilePreview.setTile(tileFactory.getNextTile(0,0));
     }
 
     public void tick() {
@@ -18,11 +22,14 @@ public class Gameplay implements MouseListener {
         for (Tile tile : new ArrayList<>(tiles)) {
             tile.render(g);
         }
+        tilePreview.render(g);
     }
 
     private void spawnTile(int x, int y) {
         if (spawnIsPossible(x, y) && placeIsEmpty(x, y)) {
-            Tile newTile = new Tile(x, y);
+            Tile newTile = tilePreview.getTile();
+            newTile.setX(x);
+            newTile.setY(y);
             tiles.add(newTile);
         }
     }
@@ -75,6 +82,9 @@ public class Gameplay implements MouseListener {
     }
 }
 
-//kładziemy tylko na WOLNE przylegajace miejsca
-//grafiki tile
+//podgląd aktualnego
+//postawienie aktualnego chowa podgląd
+//również aktywuje przycisk
+//również blokuje stawianie klocka
+//przycisk zatwierdzenia - naciśnięcie pokazuje podgląd kolejnego
 //przyleganie dróg - zezwala lub nie na położenie tile

@@ -8,6 +8,7 @@ public class Gameplay implements MouseListener {
     private final List<Tile> tiles = new ArrayList<>();
     private final TileFactory tileFactory = new TileFactory();
     private TilePreview tilePreview = new TilePreview();
+    private EndButton endButton = new EndButton();
 
 
     public Gameplay() {
@@ -23,6 +24,7 @@ public class Gameplay implements MouseListener {
             tile.render(g);
         }
         tilePreview.render(g);
+        endButton.render(g);
     }
 
     private void spawnTile(int x, int y) {
@@ -63,7 +65,17 @@ public class Gameplay implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
+        if (endButton.isOnButton(e.getX(), e.getY())) {
+//            endTurn();
+//            endButton.disable();
+            System.out.println("nacisnieto przycisk");
+        } else {
+            System.out.println("dodaje klocek");
+            spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
+        }
+
+
+
     }
 
     @Override

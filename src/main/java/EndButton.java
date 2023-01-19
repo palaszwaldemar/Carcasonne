@@ -20,6 +20,9 @@ public class EndButton {
         g.fillRect(x, y, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
         g.drawRect(x, y, WIDTH, HEIGHT);
+        int xName = x + 20;
+        int yName = y + 30;
+        g.drawString("END TURN", xName, yName);
     }
 
     public boolean isOnButton(int pixelX, int pixelY) {

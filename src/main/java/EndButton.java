@@ -5,7 +5,7 @@ public class EndButton {
     private final int y = 10;
     private final static int WIDTH = 100;
     private final static int HEIGHT = 50;
-    private boolean disable;
+    private boolean disable = true;
 
     public boolean isDisable() {
         return disable;

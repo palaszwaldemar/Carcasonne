@@ -69,8 +69,10 @@ public class Gameplay implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (endButton.isOnButton(e.getX(), e.getY())) {
-            updatePreviewTile();
-            endButton.disable();
+            if (!endButton.isDisable()) {
+                updatePreviewTile();
+                endButton.disable();
+            }
         } else {
             spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
             endButton.enable();

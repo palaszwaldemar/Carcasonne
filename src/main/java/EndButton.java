@@ -5,10 +5,14 @@ public class EndButton {
     private final int y = 10;
     private final static int WIDTH = 100;
     private final static int HEIGHT = 50;
-    private boolean isDisable;
+    private boolean disable;
+
+    public boolean isDisable() {
+        return disable;
+    }
 
     void render(Graphics g) {
-        if (isDisable) {
+        if (disable) {
             g.setColor(Color.GRAY);
         } else {
             g.setColor(Color.GRAY.brighter());
@@ -24,10 +28,10 @@ public class EndButton {
 
 
     public void disable() {
-        isDisable = true;
+        disable = true;
     }
 
     public void enable() {
-        isDisable = false;
+        disable = false;
     }
 }

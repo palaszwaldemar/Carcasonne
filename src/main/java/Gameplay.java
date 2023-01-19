@@ -67,11 +67,10 @@ public class Gameplay implements MouseListener {
     public void mousePressed(MouseEvent e) {
         if (endButton.isOnButton(e.getX(), e.getY())) {
 //            endTurn();
-//            endButton.disable();
-            System.out.println("nacisnieto przycisk");
+            endButton.disable();
         } else {
-            System.out.println("dodaje klocek");
             spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
+            endButton.enable();
         }
 
 

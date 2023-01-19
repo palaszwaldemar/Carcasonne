@@ -38,6 +38,9 @@ public class Gameplay implements MouseListener {
 
     private boolean spawnIsPossible(int x, int y) {
         for (Tile tile : tiles) {
+            if (tile.equals(tilePreview.getTile())) {
+                continue;
+            }
             int otherXDifference = Math.abs( tile.getX() - x);
             int otherYDifference = Math.abs( tile.getY() - y);
             int sum = otherXDifference + otherYDifference;

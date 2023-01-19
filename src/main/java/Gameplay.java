@@ -13,7 +13,7 @@ public class Gameplay implements MouseListener {
 
     public Gameplay() {
         tiles.add(tileFactory.getNextTile(8,4));
-        tilePreview.setTile(tileFactory.getNextTile(0,0));
+        updatePreviewTile();
     }
 
     public void tick() {
@@ -69,7 +69,7 @@ public class Gameplay implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (endButton.isOnButton(e.getX(), e.getY())) {
-//            endTurn();
+            updatePreviewTile();
             endButton.disable();
         } else {
             spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
@@ -78,6 +78,10 @@ public class Gameplay implements MouseListener {
 
 
 
+    }
+
+    private void updatePreviewTile() {
+        tilePreview.setTile(tileFactory.getNextTile(0,0));
     }
 
     @Override

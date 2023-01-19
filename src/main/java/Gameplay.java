@@ -27,13 +27,15 @@ public class Gameplay implements MouseListener {
         endButton.render(g);
     }
 
-    private void spawnTile(int x, int y) {
+    private boolean spawnTile(int x, int y) {
         if (spawnIsPossible(x, y) && placeIsEmpty(x, y)) {
             Tile newTile = tilePreview.getTile();
             newTile.setX(x);
             newTile.setY(y);
             tiles.add(newTile);
+            return true;
         }
+        return false;
     }
 
     private boolean spawnIsPossible(int x, int y) {
@@ -74,12 +76,10 @@ public class Gameplay implements MouseListener {
                 endButton.disable();
             }
         } else {
-            spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()));
-            endButton.enable();
+             if (spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()))) {
+                 endButton.enable();
+             }
         }
-
-
-
     }
 
     private void updatePreviewTile() {

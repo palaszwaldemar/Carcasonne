@@ -20,7 +20,7 @@ public class EndButton {
         g.fillRect(x, y, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
         g.drawRect(x, y, WIDTH, HEIGHT);
-        g.drawString("END TURN", x + 20, y + 30); // CHECK : 19.01.2023 add "end turn" on button, commit
+        g.drawString("END TURN", x + 20, y + 30);
     }
 
     public boolean isOnButton(int pixelX, int pixelY) {

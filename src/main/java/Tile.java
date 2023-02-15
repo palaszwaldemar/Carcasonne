@@ -1,10 +1,15 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Arrays;
+
 public class Tile {
     private static final int SIZE = 100;
-    private  int x;
-    private  int y;
-    private BufferedImage bufferedImage;
+    private int x;
+    private int y;
+    private final BufferedImage bufferedImage;
+    private final boolean[] road = new boolean[4];
+    private final File file = new File(String.valueOf(Tile.class.getResource("TilesInfo.csv")));
 
     public Tile(int x, int y, BufferedImage bufferedImage) {
         this.x = x;
@@ -28,11 +33,29 @@ public class Tile {
         this.y = y;
     }
 
+    public void setRoad(char side) {
+        switch (side) {
+            case 'N' -> road[0] = true;
+            case 'E' -> road[1] = true;
+            case 'S' -> road[2] = true;
+            case 'W' -> road[3] = true;
+        }
+    }
+
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "x=" + x +
+                ", y=" + y +
+                ", road=" + Arrays.toString(road) +
+                '}';
     }
 }

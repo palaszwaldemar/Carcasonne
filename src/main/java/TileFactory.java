@@ -10,9 +10,26 @@ public class TileFactory {
     //getStartingTile
 
     Tile getNextTile(int x, int y) {
+        String symbol = generateRandomTileSymbol();
         try {
-            BufferedImage bufferedImage = ImageIO.read(Tile.class.getResource("/tiles/PNG/Base_Game_C2_Tile_" + generateRandomTileSymbol() + ".png"));
+            BufferedImage bufferedImage = ImageIO.read(Tile.class.getResource("/tiles/PNG/Base_Game_C2_Tile_" + symbol + ".png"));
             Tile tile = new Tile(x, y, bufferedImage);
+            switch (symbol) {
+                case "U" -> {
+                    tile.setRoad('N');
+                    tile.setRoad('S');
+                }
+                case "D" -> {
+                    tile.setRoad('E');
+                    tile.setRoad('W');
+                }
+                case "X" -> {
+                    tile.setRoad('N');
+                    tile.setRoad('E');
+                    tile.setRoad('S');
+                    tile.setRoad('W');
+                }
+            }
             return tile;
         } catch (IOException e) {
             e.printStackTrace();

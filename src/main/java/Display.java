@@ -9,7 +9,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public final class Display {
 
     private static final int DEFAULT_WIDTH = 1800;
-    private static final int DEFAULT_HEIGHT =900;
+    private static final int DEFAULT_HEIGHT = 900;
 
     private static int width;
     private static int height;

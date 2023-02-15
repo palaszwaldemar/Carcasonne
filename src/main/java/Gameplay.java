@@ -12,7 +12,7 @@ public class Gameplay implements MouseListener {
 
 
     public Gameplay() {
-        tiles.add(tileFactory.getNextTile(8,4));
+        tiles.add(tileFactory.getNextTile(8, 4));
         updatePreviewTile();
     }
 
@@ -28,7 +28,7 @@ public class Gameplay implements MouseListener {
     }
 
     private boolean spawnTile(int x, int y) {
-        if (spawnIsPossible(x, y) && placeIsEmpty(x, y)) {
+        if (isConnectedTile(x, y) && placeIsEmpty(x, y) && isMatchingTile(x, y)) {
             Tile newTile = tilePreview.getTile();
             newTile.setX(x);
             newTile.setY(y);
@@ -38,13 +38,13 @@ public class Gameplay implements MouseListener {
         return false;
     }
 
-    private boolean spawnIsPossible(int x, int y) {
+    private boolean isConnectedTile(int x, int y) {
         for (Tile tile : tiles) {
             if (tile.equals(tilePreview.getTile())) {
                 continue;
             }
-            int otherXDifference = Math.abs( tile.getX() - x);
-            int otherYDifference = Math.abs( tile.getY() - y);
+            int otherXDifference = Math.abs(tile.getX() - x);
+            int otherYDifference = Math.abs(tile.getY() - y);
             int sum = otherXDifference + otherYDifference;
             if (sum == 1) {
                 return true;
@@ -62,6 +62,17 @@ public class Gameplay implements MouseListener {
         return true;
     }
 
+    private boolean isMatchingTile(int x, int y) {
+        Tile northConnected = null;
+        for (Tile tile : tiles) {
+            if (tile.getX() == x && tile.getY() == y - 1) {
+                northConnected = tile;
+            }
+        }
+        System.out.println(northConnected);
+        return true;
+    }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -76,14 +87,14 @@ public class Gameplay implements MouseListener {
                 endButton.disable();
             }
         } else {
-             if (spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()))) {
-                 endButton.enable();
-             }
+            if (spawnTile(Cords.xToCords(e.getX()), Cords.yToCords(e.getY()))) {
+                endButton.enable();
+            }
         }
     }
 
     private void updatePreviewTile() {
-        tilePreview.setTile(tileFactory.getNextTile(0,0));
+        tilePreview.setTile(tileFactory.getNextTile(0, 0));
     }
 
     @Override

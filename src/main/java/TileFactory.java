@@ -1,7 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -23,7 +22,7 @@ public class TileFactory {
         return tiles;
     }
 
-    Tile parseCsvLineToTile(String line) {
+    private Tile parseCsvLineToTile(String line) {
         String[] tab = line.split(";");
         BufferedImage bufferedImage = null;
         try {
@@ -31,6 +30,12 @@ public class TileFactory {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new Tile (0, 0, bufferedImage);
+        Tile tile = new Tile(0, 0, bufferedImage);
+        String directionsString = tab[1];
+        char[] directionsChar = directionsString.toCharArray();
+        for (char direction : directionsChar) {
+            tile.setRoad(direction);
+        }
+        return tile;
     }
 }

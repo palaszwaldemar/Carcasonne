@@ -67,14 +67,13 @@ public class Gameplay implements MouseListener {
         return true;
     }
 
-    private boolean isMatchingTile(int x, int y) {
+    private boolean isMatchingTile(int x, int y) {// TODO: 16.02.2023 dokonczyc
         Tile northConnected = null;
         for (Tile tile : tilesBoard) {
             if (tile.getX() == x && tile.getY() == y - 1) {
                 northConnected = tile;
             }
         }
-        System.out.println(northConnected);
         return true;
     }
 

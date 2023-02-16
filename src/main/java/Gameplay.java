@@ -3,16 +3,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Gameplay implements MouseListener {
-    private final List<Tile> tiles = new ArrayList<>();
     private final TileFactory tileFactory = new TileFactory();
+    private final List<Tile> tilesBoard = new ArrayList<>();
+    private final Queue<Tile> tilesPile = tileFactory.getListOfTile();
     private TilePreview tilePreview = new TilePreview();
     private EndButton endButton = new EndButton();
 
 
     public Gameplay() {
-        tiles.add(tileFactory.getNextTile(8, 4));
+        Tile tile = tilesPile.poll();
+        tile.setX(8); // TODO: 16.02.2023 wysypie się jak się skończą
+        tile.setY(4);
+        tilesBoard.add(tile);
         updatePreviewTile();
     }
 
@@ -20,7 +25,7 @@ public class Gameplay implements MouseListener {
     }
 
     public void render(Graphics g) {
-        for (Tile tile : new ArrayList<>(tiles)) {
+        for (Tile tile : new ArrayList<>(tilesBoard)) {
             tile.render(g);
         }
         tilePreview.render(g);
@@ -32,14 +37,14 @@ public class Gameplay implements MouseListener {
             Tile newTile = tilePreview.getTile();
             newTile.setX(x);
             newTile.setY(y);
-            tiles.add(newTile);
+            tilesBoard.add(newTile);
             return true;
         }
         return false;
     }
 
     private boolean isConnectedTile(int x, int y) {
-        for (Tile tile : tiles) {
+        for (Tile tile : tilesBoard) {
             if (tile.equals(tilePreview.getTile())) {
                 continue;
             }
@@ -54,7 +59,7 @@ public class Gameplay implements MouseListener {
     }
 
     private boolean placeIsEmpty(int x, int y) {
-        for (Tile tile : tiles) {
+        for (Tile tile : tilesBoard) {
             if (tile.getX() == x && tile.getY() == y) {
                 return false;
             }
@@ -64,7 +69,7 @@ public class Gameplay implements MouseListener {
 
     private boolean isMatchingTile(int x, int y) {
         Tile northConnected = null;
-        for (Tile tile : tiles) {
+        for (Tile tile : tilesBoard) {
             if (tile.getX() == x && tile.getY() == y - 1) {
                 northConnected = tile;
             }
@@ -94,7 +99,7 @@ public class Gameplay implements MouseListener {
     }
 
     private void updatePreviewTile() {
-        tilePreview.setTile(tileFactory.getNextTile(0, 0));
+        tilePreview.setTile(tilesPile.poll());
     }
 
     @Override

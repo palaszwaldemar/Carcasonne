@@ -12,14 +12,25 @@ public class TileFactory {
         try {
             Scanner reader = new Scanner(new File("src\\main\\resources\\TilesInfo.csv"));
             while (reader.hasNextLine()) {
-                String[] tab = reader.nextLine().split(";");
-                BufferedImage bufferedImage = ImageIO.read(Tile.class.getResource("/tiles/PNG/Base_Game_C2_Tile_" + tab[0] + ".png"));
-                tiles.add(new Tile(0, 0, bufferedImage));
+                String line = reader.nextLine();
+                Tile tile = parseCsvLineToTile(line);
+                tiles.add(tile);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         Collections.shuffle(tiles);
         return tiles;
+    }
+
+    Tile parseCsvLineToTile(String line) {
+        String[] tab = line.split(";");
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = ImageIO.read(Tile.class.getResource("/tiles/PNG/Base_Game_C2_Tile_" + tab[0] + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Tile (0, 0, bufferedImage);
     }
 }

@@ -9,8 +9,8 @@ public class Gameplay implements MouseListener {
     private final TileFactory tileFactory = new TileFactory();
     private final List<Tile> tilesBoard = new ArrayList<>();
     private final Queue<Tile> tilesPile = tileFactory.getListOfTile();
-    private TilePreview tilePreview = new TilePreview();
-    private EndButton endButton = new EndButton();
+    private final TilePreview tilePreview = new TilePreview();
+    private final EndButton endButton = new EndButton();
 
 
     public Gameplay() {

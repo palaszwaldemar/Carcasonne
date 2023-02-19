@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Arrays;
 
 public class Tile {
@@ -9,7 +8,6 @@ public class Tile {
     private int y;
     private final BufferedImage bufferedImage;
     private final boolean[] road = new boolean[4];
-    private final File file = new File(String.valueOf(Tile.class.getResource("TilesInfo.csv")));
 
     public Tile(int x, int y, BufferedImage bufferedImage) {
         this.x = x;
@@ -40,6 +38,10 @@ public class Tile {
             case 'S' -> road[2] = true;
             case 'W' -> road[3] = true;
         }
+    }
+
+    public boolean getRoad(int i) {
+        return road[i];
     }
 
     public int getX() {

@@ -67,11 +67,38 @@ public class Gameplay implements MouseListener {
         return true;
     }
 
-    private boolean isMatchingTile(int x, int y) {// TODO: 16.02.2023 dokonczyc
-        Tile northConnected = null;
+    private boolean isMatchingTile(int x, int y) {
+        Tile northConnected;
+        Tile eastConnected;
+        Tile southConnected;
+        Tile westConnected;
         for (Tile tile : tilesBoard) {
-            if (tile.getX() == x && tile.getY() == y - 1) {
+            if (tile.equals(tilePreview.getTile())) {
+                continue;
+            }
+            if (tile.getX() == x && tile.getY() == y + 1) {
                 northConnected = tile;
+                if (northConnected.getRoad(0) != tilePreview.getTile().getRoad(2)) {
+                    return false;
+                }
+            }
+            if (tile.getX() == x && tile.getY() == y - 1) {
+                southConnected = tile;
+                if (southConnected.getRoad(2) != tilePreview.getTile().getRoad(0)) {
+                    return false;
+                }
+            }
+            if (tile.getX() == x - 1 && tile.getY() == y) {
+                eastConnected = tile;
+                if (eastConnected.getRoad(1) != tilePreview.getTile().getRoad(3)) {
+                    return false;
+                }
+            }
+            if (tile.getX() == x + 1 && tile.getY() == y) {
+                westConnected = tile;
+                if (westConnected.getRoad(3) != tilePreview.getTile().getRoad(1)) {
+                    return false;
+                }
             }
         }
         return true;

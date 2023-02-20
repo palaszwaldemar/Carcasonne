@@ -68,6 +68,13 @@ public class Gameplay implements MouseListener {
     }
 
     private boolean isMatchingTile(int x, int y) {
+        if (areRoadsCorrect(x, y)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean areRoadsCorrect(int x, int y) {
         Tile northConnected;
         Tile eastConnected;
         Tile southConnected;

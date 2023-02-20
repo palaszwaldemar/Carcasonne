@@ -68,13 +68,10 @@ public class Gameplay implements MouseListener {
     }
 
     private boolean isMatchingTile(int x, int y) {
-        if (areRoadsCorrect(x, y)) {
-            return true;
-        }
-        return false;
+        return areRoadsCorrectlyConnected(x, y) && areCitiesCorrectlyConnected(x, y);
     }
 
-    private boolean areRoadsCorrect(int x, int y) {
+    private boolean areRoadsCorrectlyConnected(int x, int y) {
         Tile northConnected;
         Tile eastConnected;
         Tile southConnected;
@@ -109,6 +106,44 @@ public class Gameplay implements MouseListener {
             }
         }
         return true;
+    }
+
+    private boolean areCitiesCorrectlyConnected(int x, int y) {
+        Tile northConnected;
+        Tile eastConnected;
+        Tile southConnected;
+        Tile westConnected;
+        for (Tile tile : tilesBoard) {
+            if (tile.equals(tilePreview.getTile())) {
+                continue;
+            }
+            if (tile.getX() == x && tile.getY() == y + 1) {
+                northConnected = tile;
+                if (northConnected.getCity(0) != tilePreview.getTile().getCity(2)) {
+                    return false;
+                }
+            }
+            if (tile.getX() == x && tile.getY() == y - 1) {
+                southConnected = tile;
+                if (southConnected.getCity(2) != tilePreview.getTile().getCity(0)) {
+                    return false;
+                }
+            }
+            if (tile.getX() == x - 1 && tile.getY() == y) {
+                eastConnected = tile;
+                if (eastConnected.getCity(1) != tilePreview.getTile().getCity(3)) {
+                    return false;
+                }
+            }
+            if (tile.getX() == x + 1 && tile.getY() == y) {
+                westConnected = tile;
+                if (westConnected.getCity(3) != tilePreview.getTile().getCity(1)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
     }
 
 

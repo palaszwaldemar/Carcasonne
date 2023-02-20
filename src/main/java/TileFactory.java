@@ -31,10 +31,15 @@ public class TileFactory {
             e.printStackTrace();
         }
         Tile tile = new Tile(0, 0, bufferedImage);
-        String directionsString = tab[1];
-        char[] directionsChar = directionsString.toCharArray();
-        for (char direction : directionsChar) {
+        String directionRoadString = tab[1];
+        String directionCityString = tab[2];
+        char[] directionsRoadChar = directionRoadString.toCharArray();
+        char[] directionsCityChar = directionCityString.toCharArray();
+        for (char direction : directionsRoadChar) {
             tile.setRoad(direction);
+        }
+        for (char direction : directionsCityChar) {
+            tile.setCity(direction);
         }
         return tile;
     }

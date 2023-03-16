@@ -1,6 +1,9 @@
+package carcassonne;
+
 import java.awt.*;
 
 public class EndButton {
+//todo refactor for resize
     private final int x = 1690;
     private final int y = 10;
     private final static int WIDTH = 100;
@@ -23,10 +26,9 @@ public class EndButton {
         g.drawString("END TURN", x + 20, y + 30);
     }
 
-    public boolean isOnButton(int pixelX, int pixelY) {
+    public boolean isClicked(int pixelX, int pixelY) {
         return (pixelX >= x && pixelX <= x + WIDTH) && (pixelY >= y && pixelY <= y + HEIGHT);
     }
-
 
     public void disable() {
         disable = true;

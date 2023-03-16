@@ -1,18 +1,15 @@
+package carcassonne;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.util.List;
 
+import static carcassonne.GuiParams.HEIGHT;
+import static carcassonne.GuiParams.WIDTH;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 //manages game frame and canvas
 public final class Display {
-
-    private static final int DEFAULT_WIDTH = 1800;
-    private static final int DEFAULT_HEIGHT = 900;
-
-    private static int width;
-    private static int height;
 
     private JFrame frame;
     private Canvas canvas;
@@ -22,9 +19,7 @@ public final class Display {
 
     public Display(String title) {
         this.title = title;
-        width = DEFAULT_WIDTH;
-        height = DEFAULT_HEIGHT;
-        size = new Dimension(width, height);
+        size = new Dimension(WIDTH, HEIGHT);
 
         createAndSetupFrame();
         createAndSetupCanvas();
@@ -54,14 +49,6 @@ public final class Display {
 
     public Canvas getCanvas() {
         return canvas;
-    }
-
-    public static int getHeight() {
-        return height;
-    }
-
-    public static int getWidth() {
-        return width;
     }
 
     public void addListener(MouseListener listener) {

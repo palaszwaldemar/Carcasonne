@@ -1,3 +1,4 @@
+package carcassonne;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -70,7 +71,7 @@ public final class GameEngine implements Runnable {
 
     private void renderFrame() {
         Graphics graphics = strategy.getDrawGraphics();
-        graphics.clearRect(0, 0, Display.getWidth(), Display.getHeight());
+        graphics.clearRect(0, 0, GuiParams.WIDTH, GuiParams.HEIGHT);
         gameplay.render(graphics);
         strategy.show();
         graphics.dispose();

@@ -1,12 +1,18 @@
+package carcassonne;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 public class Tile {
     private static final int SIZE = 100;
+
+    //gui
     private int x;
     private int y;
     private final BufferedImage bufferedImage;
+
+    //logic
     private final boolean[] road = new boolean[4];
     private final boolean[] city = new boolean[4];
 
@@ -68,7 +74,7 @@ public class Tile {
 
     @Override
     public String toString() {
-        return "Tile{" +
+        return "carcassone.Tile{" +
                 "x=" + x +
                 ", y=" + y +
                 ", road=" + Arrays.toString(road) +

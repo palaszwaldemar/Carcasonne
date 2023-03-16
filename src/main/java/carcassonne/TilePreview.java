@@ -1,3 +1,5 @@
+package carcassonne;
+
 import java.awt.*;
 
 public class TilePreview {

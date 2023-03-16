@@ -1,3 +1,5 @@
+package carcassonne;
+
 public class Cords {
 
     static int xToCords(int x) {
